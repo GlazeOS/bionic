@@ -625,6 +625,11 @@ ifeq ($(TARGET_NEEDS_GCC_LIBC),true)
   use_clang := false
 endif
 
+# Clang/llvm breaks sensors for msm8960 (e.g. mako).
+ifeq ($(TARGET_BOARD_PLATFORM),$(filter $(TARGET_BOARD_PLATFORM),msm8960))
+  use_clang := false
+endif
+
 ifeq ($(use_clang),)
   use_clang := true
 endif
